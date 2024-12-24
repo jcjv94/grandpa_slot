@@ -1,0 +1,636 @@
+/* Google Font */
+body {
+  font-family: 'Press Start 2P', Arial Black, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+
+  /* Moving gradient background */
+  background: linear-gradient(45deg, #1a1a2e, #333 50%, #1a1a2e 75%);
+  background-size: 200% 200%;
+  animation: moveBg 10s infinite alternate ease-in-out;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+@keyframes moveBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Main container */
+.container {
+  text-align: center;
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Title Styling */
+h1 {
+  font-size: 3rem;
+  color: #ffcc00;
+  text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900;
+  margin-bottom: 20px;
+}
+
+/* Score Board */
+.score-board {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #b2b8ff;
+  text-shadow: 0 0 10px #6a11cb;
+}
+
+/* Slot Machine Frame */
+.slot-machine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #494949 0%, #777 100%);
+  border: 8px ridge #ccc;
+  border-radius: 30px;
+  padding: 30px 50px;
+  box-shadow:
+    0 0 30px #ff00ff,
+    0 0 60px #ff00ff,
+    inset 0 0 30px rgba(0,0,0,0.7);
+  transition: box-shadow 0.3s ease-in-out;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.slot-machine:hover {
+  box-shadow:
+    0 0 40px #ff00ff,
+    0 0 80px #ff00ff,
+    inset 0 0 40px rgba(0,0,0,0.7);
+}
+
+/* Reel Containers */
+.reel-container {
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+
+  border: 5px solid #ff00ff;
+  border-radius: 10px;
+  box-shadow:
+    0 0 20px #ff00ff,
+    0 0 40px #ff77ff,
+    inset 0 0 15px #202040;
+
+  background-color: #0f0f20;
+}
+
+.reel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #b2b8ff;
+  text-shadow: 0 0 10px #6a11cb;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0; /* Start invisible; set to 1 via JS */
+  padding: 10px; /* Prevent text from touching edges */
+}
+
+.reel p {
+  word-wrap: break-word; /* Ensure long quotes wrap */
+  max-width: 90%; /* Prevent spilling over */
+}
+
+.reel img {
+  max-width: 100%;
+  max-height: 100%;
+  filter: drop-shadow(0 0 10px #6a11cb);
+}
+
+/* Spinning animation for each reel container */
+.reel-spinning {
+  animation: reel-spin 0.15s infinite linear;
+}
+
+@keyframes reel-spin {
+  0% {
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  25% {
+    transform: translateY(-4px);
+    filter: blur(1.5px);
+  }
+  50% {
+    transform: translateY(4px);
+    filter: blur(0);
+  }
+  75% {
+    transform: translateY(-2px);
+    filter: blur(1px);
+  }
+  100% {
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Spin Button */
+#spinButton {
+  background: #ff00ff;
+  color: #fff;
+  border: 3px solid #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 15px 40px;
+  cursor: pointer;
+  box-shadow:
+    0 0 20px #ff00ff,
+    0 0 40px #ff77ff;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-top: 20px;
+}
+
+#spinButton:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 0 30px #ff00ff,
+    0 0 60px #ff77ff;
+}
+
+#spinButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Big Win Animation */
+.big-win {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #0033ff, #9900ff);
+  border: 5px solid #ffffff;
+  color: #ffffff;
+  padding: 40px 80px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow:
+    0 0 20px #ffffff,
+    0 0 40px #9900ff,
+    0 0 60px #0033ff;
+  animation: bigWinEffect 1.5s infinite alternate;
+  z-index: 1000;
+}
+
+.big-win h1 {
+  font-size: 4rem;
+  margin: 0;
+  color: #ffff00;
+  text-shadow: 0 0 10px #ffff00, 0 0 20px #ffcc00;
+}
+
+.big-win p {
+  font-size: 2rem;
+  margin: 20px 0 0;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #cccccc;
+}
+
+@keyframes bigWinEffect {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Screen Flash (Win) */
+.flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  animation: flashEffect 0.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes flashEffect {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Loss Overlay (Loss) */
+.loss {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.6);
+  animation: lossFlash 0.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes lossFlash {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Game Over Screen */
+.game-over {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #ff3333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1000;
+}
+
+.game-over h1 {
+  font-size: 5rem;
+  color: #ff0000;
+  text-shadow: 0 0 20px #ff3333, 0 0 40px #ff0000;
+  margin-bottom: 20px;
+}
+
+.game-over p {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.game-over button {
+  background-color: #33cc33;
+  color: #ffffff;
+  font-size: 2rem;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.game-over button:hover {
+  background-color: #28a428;
+  box-shadow: 0 0 20px #33cc33;
+}
+
+/* Over-the-top "WOW MAN!!!" text for wins */
+.wow-man {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85); /* Semi-transparent background to ensure visibility */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1500; /* Above everything else */
+}
+
+.wow-man h1 {
+  font-size: 8rem;
+  color: #00ffea; /* Bright, contrasting color */
+  text-align: center;
+  text-shadow:
+    0 0 30px #00ffea,
+    0 0 60px #00ffe5,
+    0 0 90px #00ffea;
+  animation: wowManEffect 1.2s infinite alternate ease-in-out;
+  word-wrap: break-word; /* Ensure text wraps */
+  max-width: 90%; /* Prevent spilling over */
+}
+
+@keyframes wowManEffect {
+  0% {
+    transform: scale(1) rotate(0deg);
+    color: #00ffea;
+  }
+  25% {
+    color: #ff00ea;
+  }
+  50% {
+    transform: scale(1.2) rotate(-5deg);
+    color: #ffea00;
+  }
+  75% {
+    color: #00ea00;
+  }
+  100% {
+    transform: scale(1.1) rotate(5deg);
+    color: #00ffea;
+  }
+}
+
+/* New "BUGGER" Game Over Effect */
+.bugger-over {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff4e50, #f9d423);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1600; /* Above all other overlays */
+  flex-direction: column;
+  padding: 20px;
+}
+
+.bugger-over h1 {
+  font-size: 6rem;
+  color: #ffffff;
+  text-shadow:
+    0 0 20px #ffffff,
+    0 0 40px #ff4e50,
+    0 0 60px #f9d423;
+  margin: 0;
+  animation: buggerEffect 1.5s infinite alternate ease-in-out;
+  word-wrap: break-word;
+  max-width: 90%;
+  text-align: center;
+}
+
+.bugger-over p {
+  font-size: 2rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px #ffffff, 0 0 20px #ff4e50;
+  margin-top: 20px;
+}
+
+.bugger-over button {
+  background-color: #ffffff;
+  color: #ff4e50;
+  border: 2px solid #ff4e50;
+  border-radius: 15px;
+  padding: 10px 25px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.bugger-over button:hover {
+  background-color: #ff4e50;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+@keyframes buggerEffect {
+  0% {
+    transform: scale(1) rotate(0deg);
+    color: #ffffff;
+  }
+  25% {
+    color: #ff4e50;
+  }
+  50% {
+    transform: scale(1.1) rotate(-5deg);
+    color: #f9d423;
+  }
+  75% {
+    color: #ff4e50;
+  }
+  100% {
+    transform: scale(1.05) rotate(5deg);
+    color: #ffffff;
+  }
+}
+
+/* Responsive Design */
+
+/* Tablets and smaller desktops */
+@media (max-width: 1024px) {
+  .reel-container {
+    width: 200px;
+    height: 200px;
+    margin: 8px;
+  }
+
+  .slot-machine {
+    padding: 20px 30px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .score-board {
+    font-size: 1.5rem;
+  }
+
+  #spinButton {
+    font-size: 1.5rem;
+    padding: 12px 30px;
+  }
+
+  .big-win h1 {
+    font-size: 3.5rem;
+  }
+
+  .big-win p {
+    font-size: 1.8rem;
+  }
+
+  .game-over h1 {
+    font-size: 4rem;
+  }
+
+  .game-over p {
+    font-size: 1.8rem;
+  }
+
+  .game-over button {
+    font-size: 1.8rem;
+    padding: 12px 25px;
+  }
+
+  .wow-man h1 {
+    font-size: 6rem;
+  }
+
+  /* "BUGGER" Game Over Effect */
+  .bugger-over h1 {
+    font-size: 5rem;
+  }
+
+  .bugger-over p {
+    font-size: 1.5rem;
+  }
+
+  .bugger-over button {
+    font-size: 1.3rem;
+    padding: 8px 20px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 768px) {
+  .slot-machine {
+    flex-direction: column; /* Stack reels vertically */
+    padding: 20px;
+  }
+
+  .reel-container {
+    width: 180px;
+    height: 180px;
+    margin: 6px 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .score-board {
+    font-size: 1.2rem;
+  }
+
+  #spinButton {
+    font-size: 1.2rem;
+    padding: 10px 25px;
+  }
+
+  .big-win h1 {
+    font-size: 3rem;
+  }
+
+  .big-win p {
+    font-size: 1.5rem;
+  }
+
+  .game-over h1 {
+    font-size: 3rem;
+  }
+
+  .game-over p {
+    font-size: 1.5rem;
+  }
+
+  .game-over button {
+    font-size: 1.5rem;
+    padding: 10px 20px;
+  }
+
+  .wow-man h1 {
+    font-size: 5rem;
+  }
+
+  /* "BUGGER" Game Over Effect */
+  .bugger-over h1 {
+    font-size: 4rem;
+  }
+
+  .bugger-over p {
+    font-size: 1.2rem;
+  }
+
+  .bugger-over button {
+    font-size: 1.2rem;
+    padding: 8px 15px;
+  }
+
+  .reel {
+    font-size: 1rem; /* Reduced font size for quotes */
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .reel-container {
+    width: 150px;
+    height: 150px;
+    margin: 5px 0;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .score-board {
+    font-size: 1rem;
+  }
+
+  #spinButton {
+    font-size: 1rem;
+    padding: 8px 20px;
+  }
+
+  .big-win h1 {
+    font-size: 2.5rem;
+  }
+
+  .big-win p {
+    font-size: 1.2rem;
+  }
+
+  .game-over h1 {
+    font-size: 2.5rem;
+  }
+
+  .game-over p {
+    font-size: 1.2rem;
+  }
+
+  .game-over button {
+    font-size: 1.2rem;
+    padding: 8px 15px;
+  }
+
+  .wow-man h1 {
+    font-size: 4rem;
+  }
+
+  /* "BUGGER" Game Over Effect */
+  .bugger-over h1 {
+    font-size: 3rem;
+  }
+
+  .bugger-over p {
+    font-size: 1rem;
+  }
+
+  .bugger-over button {
+    font-size: 1rem;
+    padding: 6px 12px;
+  }
+
+  .reel {
+    font-size: 0.9rem; /* Further reduced font size for quotes */
+  }
+}

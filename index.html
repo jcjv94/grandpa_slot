@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Der Spielautomat von Mittelbach</title>
+
+  <!-- Google Fonts for a retro look (Press Start 2P) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Title -->
+    <h1>Der Spielautomat von Mittelbach</h1>
+
+    <!-- Score Display -->
+    <div class="score-board">
+      <span>Score: </span><span id="score">100</span>
+    </div>
+
+    <!-- Slot Machine -->
+    <div class="slot-machine">
+      <div class="reel-container">
+        <div class="reel" id="reel1"></div>
+      </div>
+      <div class="reel-container">
+        <div class="reel" id="reel2"></div>
+      </div>
+      <div class="reel-container">
+        <div class="reel" id="reel3"></div>
+      </div>
+    </div>
+
+    <!-- Spin Button -->
+    <button id="spinButton">Spin</button>
+
+    <!-- Audio Files -->
+    <audio id="spinSound" src="spin.wav"></audio>
+    <audio id="winSound" src="win.wav"></audio>
+    <audio id="gameOverSound" src="game-over.wav"></audio>
+
+    <!-- Confetti Library -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"
+    ></script>
+
+    <!-- Game Script -->
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
