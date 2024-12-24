@@ -10,11 +10,17 @@ body {
   background-size: 200% 200%;
   animation: moveBg 10s infinite alternate ease-in-out;
 
-  display: flex;
+  /* Removed height and overflow to allow scrolling */
+  /* height: 100vh;
+  overflow: hidden; */
+
+  /* Use min-height instead to ensure the body covers at least the viewport */
+  min-height: 100vh;
+
+  /* Removed flex properties to allow normal document flow */
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  align-items: center; */
 }
 
 @keyframes moveBg {
@@ -31,7 +37,7 @@ body {
   text-align: center;
   max-width: 1000px;
   width: 90%;
-  margin: 0 auto;
+  margin: 20px auto; /* Added top and bottom margins for spacing */
   position: relative;
 }
 
